@@ -41,6 +41,7 @@
             color: var(--text-color);
             line-height: 1.7;
             padding-top: 70px;
+            padd
             font-weight: 400;
             scroll-behavior: smooth;
         }
@@ -66,6 +67,8 @@
             transition: all 0.3s ease;
             display: flex;
             align-items: center; /* يخلي المحتويات بالنص */
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
 
         }
         
@@ -73,9 +76,12 @@
             padding: 0.6rem 0;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
             background-color: rgba(15, 23, 42, 0.7);
+            position: fixed;
 
         }
+        
 
+       
         
         
         .navbar {
@@ -83,6 +89,31 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 1rem;
+
+        }
+
+        @media(max-width:480px){
+            header.scrolled {
+                height: 70px;
+
+            }
+            header{
+                height: 70px;
+            }
+
+          
+            .progress-container {
+                top: 100px;
+            }
+            header.scrolled .navbar {
+                transform: translateY(10px);
+            }
+            header.scrolled .progress-container{
+                transform: translateY(100px);
+            }
+                
+            
+
 
         }
         
@@ -1195,9 +1226,7 @@
                 height: 45vh;
             }
             
-            .progress-container {
-                top: 60px;
-            }
+            
             
             .back-to-top {
                 bottom: 20px;
@@ -1436,7 +1465,7 @@
             --pause:0s;
         }
 
-        .news-ticker{
+        #ticker{
 
             position: fixed;
             bottom: 0;
@@ -1464,6 +1493,22 @@
             z-index: 1000;
 
         }
+
+       
+       
+        @media (max-width= 480px) {
+            #ticker.scrolled{
+                transform: translateY(20px);
+                color: #EF4444;
+
+            }
+
+            #ticker{
+                display: none;
+            }
+        }
+
+       
 
         /* حركة الظهور */
         @keyframes showTicker {
@@ -1547,9 +1592,7 @@
                 align-self: center;
             }
             
-            .news-ticker {
-                width: 100%;
-            }
+            
             
             .breaking-news {
                 padding: 12px 0;
@@ -1593,6 +1636,15 @@
         .close-btn:hover {
             color: #ff0000;
         }
+
+        body {
+
+            padding-top: 70px;
+            padding-bottom: 30px;
+
+        }
+
+        
 
             
         
@@ -2489,6 +2541,16 @@
             }
         });
 
+        window.addEventListener("scroll", function () {
+        const box = document.getElementById("ticker");
+        if (window.scrollY > 150) {
+            box.classList.add("scrolled");
+        } else {
+            box.classList.remove("scrolled");
+        }
+        });
+
+
 
 
 
@@ -2496,5 +2558,4 @@
         
     </script>
 </body>
-
 </html>
